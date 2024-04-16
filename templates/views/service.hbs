@@ -1,0 +1,128 @@
+{{> navbar}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    /* Add this CSS to your existing styles or create a new CSS file */
+    .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        height: 100%; /* Set fixed height for card */
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        background-color: #dbf0edda;
+    }
+
+    .card-icon {
+        background-color: #afc6de;
+        color: #4f52f7;
+        font-size: 24px;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-body h3 {
+        color: #007bff;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .card-body p {
+        color: #101112;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .header-container {
+        background-color: #75a9e1;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        height: 180px;
+    }
+
+    .header-title {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .header-description {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        transition: all 0.3s ease;
+    }
+
+    /* Hover effect */
+    .header-container:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+    }
+
+    .header-title:hover {
+        color: #ffd700; /* Change color on hover */
+    }
+
+    .header-description:hover {
+        color: #c8daff; /* Change color on hover */
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #f8f9fa;
+        color: #110e0e;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+</style>
+<header class="header-container">
+    <h1 class="display-4 header-title"><i class="feature-icon fas fa-palette"></i> Drawing Art Styles</h1>
+    <p class="lead header-description">Explore different drawing art styles and techniques.</p>
+</header>
+<div class="container">
+    <div class="row justify-content-center feature-box">
+       {{#each Sdata}}
+<div class="col-md-4 mb-3">
+    <div class="card">
+        <div class="card-icon">
+            <i class="{{icon}}"></i>
+        </div>
+        <div class="card-body">
+            <h3>{{title}}</h3>
+            <a href='../images/{{image}}' data-lightbox="image-{{@index}}">
+                <img src='../images/{{image}}' alt="Image" class="img-fluid mb-3">
+            </a>
+            <a class="btn btn-primary view-btn" href='../images/{{image}}' target="_blank">View</a>
+            <p>{{description}}</p>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+    </div>
+</div>
+
+{{> footer}}
+ <!-- Add Font Awesome CSS for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <!-- Add Bootstrap JS and Popper.js Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Slideshow Script -->

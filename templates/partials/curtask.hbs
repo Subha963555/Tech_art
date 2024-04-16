@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Image in New Window</title>
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Your existing CSS -->
+ <style>
+        .curtask {
+            position: absolute;
+            bottom: 10px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .curtask i {
+            font-size: 36px; /* Increased font size */
+            color: #333;
+            transition: color 0.3s; /* Smooth transition for color change */
+        }
+
+        .curtask i:hover {
+            color: #007bff; /* Change color on hover */
+        }
+
+        .centered-input {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+    
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        #showIcon {
+            font-size: 36px;
+            right: 10px;
+            bottom: 300px;
+            transition: all 0.3s ease;
+            position: fixed;
+        }
+        
+        #updateIcon {
+            font-size: 36px;
+            right: 10px;
+            bottom: 240px; /* Adjusted position */
+            transition: all 0.3s ease;
+            position: fixed;
+        }
+        
+        #showIcon:hover ,#updateIcon:hover{
+            transform: scale(1.2);
+        }
+        
+    </style>
+</head>
+</head>
+<body>
+
+<!-- Your existing HTML for "update" icon -->
+<div class="icons curtask" id="updateIcon" style="font-size: 53px;">
+    <i class="fas fa-edit" id="fas-fa-edit"></i>
+</div>
+
+<!-- Your existing HTML for "show" icon -->
+<div class="icons curtask" id="showIcon" style="font-size: 36px;"> <!-- Increased font size -->
+    <i class="fas fa-eye"></i>
+</div>
+
+<!-- Modal for updating image link -->
+<div id="updateModal" class="modal">
+  <div class="modal-content">
+    <input type="text" id="imageLinkInput" placeholder="Enter Image Link">
+    <button onclick="updateImageLink()" class="btn btn-primary m-2">Update Image Link</button>
+  </div>
+</div>
+
+<script>
+    // Set default image link when the page loads
+    window.onload = function() {
+        var defaultImageLink = localStorage.getItem("imageLink") || "https://images.unsplash.com/photo-1579762715459-5a068c289fda?q=80&w=2788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        document.getElementById("imageLinkInput").value = defaultImageLink;
+    };
+
+    // Function to open the modal for updating image link
+    function openUpdateModal() {
+        var modal = document.getElementById("updateModal");
+        modal.style.display = "block";
+        var inputBox = modal.querySelector("#imageLinkInput");
+        inputBox.focus();
+    }
+
+    // Function to close the modal when Enter key is pressed
+    function closeUpdateModalOnEnter(event) {
+        var modal = document.getElementById("updateModal");
+        var inputBox = modal.querySelector("#imageLinkInput");
+        if (event.key === "Enter") {
+            modal.style.display = "none";
+            openUpdatedImageInNewWindow();
+        }
+    }
+
+    // Function to open a new window with the updated image
+    function openUpdatedImageInNewWindow() {
+        var imageLink = document.getElementById("imageLinkInput").value;
+        localStorage.setItem("imageLink", imageLink); // Store image link in local storage
+        var newWindow = window.open("", "_blank");
+        newWindow.document.write('<img src="' + imageLink + '" style="max-width: 100%; max-height: 100vh;">'); // Set max width and max height
+        newWindow.document.close();
+        newWindow.focus();
+    }
+
+    // Function to update image link
+    function updateImageLink() {
+        var registrationNumber = prompt("Please enter your registration number:");
+        var imageLink = document.getElementById("imageLinkInput").value;
+        if (registrationNumber === '12104729') {
+            localStorage.setItem("imageLink", imageLink); // Store image link in local storage
+            alert("Image link updated successfully.");
+            closeUpdateModal();
+        } else {
+            alert("You are not authorized to update the image link.");
+            closeUpdateModal();
+        }
+    }
+
+    // Function to close the modal
+    function closeUpdateModal() {
+        var modal = document.getElementById("updateModal");
+        modal.style.display = "none";
+    }
+
+    // Click event listener for the update icon to open the modal for updating image link
+    document.getElementById("updateIcon").addEventListener("click", function() {
+        openUpdateModal();
+    });
+
+    // Click event listener for the show icon to open the updated image in a new window
+    document.getElementById("showIcon").addEventListener("click", function() {
+        openUpdatedImageInNewWindow();
+    });
+
+    // Event listener for Enter key press to close modal and update image link
+    {{!-- document.addEventListener("keypress", function(event) {
+        closeUpdateModalOnEnter(event);
+    }); --}}
+</script>
+
+</body>
+</html>

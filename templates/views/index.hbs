@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Professional Art Website</title>
+  <!-- Add Bootstrap CSS Link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #495057;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .jumbotron {
+      background-color: #fff;
+      padding: 30px 20px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      color: #6c757d;
+    }
+
+    .feature-box {
+      margin-top: 30px;
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: #007bff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #f8f9fa;
+      color: #070505;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Slideshow Styles */
+    .slideshow-container {
+      max-width: 350px; /* Adjust max-width as needed */
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+      float: right; /* Move the slideshow to the right side */
+    }
+img.slide-img{
+  height: 350px;
+}
+    .mySlides {
+      display: none;
+      animation: fade 2s ease-in-out;
+    }
+
+    @keyframes fade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    .slide-img {
+      width: 350px; /* Adjust image width */
+      
+      border: 2px solid #007bff; /* Add border */
+      border-radius: 8px; /* Add border radius */
+      transition: transform 0.3s ease; /* Add transition effect */
+    }
+
+    .slide-img:hover {
+      transform: scale(1.1); /* Add hover scale effect */
+    }
+  </style>
+</head>
+<body>
+{{> navbar}}
+  
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="display-4">Welcome to Our Art Gallery</h1>
+          <p class="lead">Explore the beauty and creativity of art drawings with us.</p>
+        </div>
+        <div class="col-md-6">
+          <div class="slideshow-container">
+            <div class="mySlides">
+              <img src="../images/art11.jpg" class="slide-img" alt="Art 1">
+            </div>
+            <div class="mySlides">
+              <img src="../images/art3.JPG" class="slide-img" alt="Art 2">
+            </div>
+            <div class="mySlides">
+              <img src="../images/art5.JPG" class="slide-img" alt="Art 3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row feature-box">
+      <div class="col-md-4">
+        <i class="feature-icon fas fa-paint-brush"></i>
+        <h3>Creative Artwork</h3>
+        <p>Explore a wide range of creative artwork crafted by talented artists.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="feature-icon fas fa-chalkboard"></i>
+        <h3>Sketches & Drawings</h3>
+        <p>Discover intricate sketches and detailed drawings that capture your imagination.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="feature-icon fas fa-palette"></i>
+        <h3>Artistic Inspiration</h3>
+        <p>Get inspired by the diverse styles and techniques showcased in our art gallery.</p>
+      </div>
+    </div>
+  </div>
+{{>footer}}
+{{>chat}}
+{{>curtask}}
+  <!-- Add Font Awesome CSS for Icons -->
+  
+  <!-- Add Font Awesome CSS for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <!-- Add Bootstrap JS and Popper.js Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Slideshow Script -->
+  <script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+  </script>
+</body>
+</html>

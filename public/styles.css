@@ -1,0 +1,108 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #495057;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .jumbotron {
+    background-color: #fff;
+    padding: 30px 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  h1 {
+    color: #007bff;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: #6c757d;
+  }
+
+  .feature-box {
+    margin-top: 30px;
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    color: #007bff;
+  }
+
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    color: #070505;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  /* Slideshow Styles */
+  .slideshow-container {
+    max-width: 350px; /* Adjust max-width as needed */
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    float: right; /* Move the slideshow to the right side */
+  }
+img.slide-img{
+height: 350px;
+}
+  .mySlides {
+    display: none;
+    animation: fade 2s ease-in-out;
+  }
+
+  @keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+  }
+
+  .slide-img {
+    width: 350px; /* Adjust image width */
+    
+    border: 2px solid #007bff; /* Add border */
+    border-radius: 8px; /* Add border radius */
+    transition: transform 0.3s ease; /* Add transition effect */
+  }
+
+  .slide-img:hover {
+    transform: scale(1.1); /* Add hover scale effect */
+  }
+  .navbar {
+    background-color: #3498db;
+    border-bottom: 3px solid #2980b9;
+    border-radius: 0;
+}
+.container-fluid {
+    background-color: #dee9c8;
+}
+
+.navbar-brand {
+    color: #0d0b0b;
+    font-size: 24px;
+    font-weight: bold;
+}
+.btn.btn-outline-success {
+    color: #070e0c;
+    border: 1px solid #fff;
+    height: 40px;
+    align-items: center;
+    font-size: x-small;
+}
+.btn.btn-outline-success:hover {
+    background-color: #2980b9;
+    color: #fff;
+}
