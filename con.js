@@ -1,33 +1,41 @@
-const mongoose=require('mongoose');
-mongoose.connect('mongodb+srv://bossubhadip19:Subha1234@cluster0.gbmqmjw.mongodb.net/').then(()=>{
-    console.log('mongodb connection established');
-}).catch(()=>{
-    console.log('connection Error');
-})
-const employe= new mongoose.Schema({
-    firstname:{
-        type:String,
-        required:true
-    },
-    lastname:{
-        type:String,
-        required:true
-    },
-    roll:{
-        type:Number,
-        required:true,
-        unique:true
-    },
-    section:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    reg:{
-        type:String,
-        required:true,
-        unique:true
-    }
+const mongoose = require('mongoose');
+require('dotenv').config();  
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('MongoDB connection established');
+}).catch((error) => {
+  console.log('Connection Error', error);
 });
-const Register=mongoose.model('Register',employe);
+
+const employeSchema = new mongoose.Schema({
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  roll: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  section: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  reg: {
+    type: String,
+    required: true,
+    unique: true
+  }
+});
+
+const Register = mongoose.model('Register', employeSchema);
+
 module.exports = { Register };

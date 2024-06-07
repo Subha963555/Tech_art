@@ -132,11 +132,14 @@ app.get('/more', isAuthenticated, (req, res) => {
 app.get('/gettouch', isAuthenticated, (req, res) => {
     res.render('gettouch');
 });
+app.get('*', isAuthenticated, (req, res) => {
+    res.render('error');
+});
 
 app.post('/', async (req, res) => {
     try {
-        const reg = req.body.reg;
-        const hashedReg = await bcrypt.hash(reg, 10);
+        // Generate hashed password
+        const hashedReg = await bcrypt.hash(req.body.reg, 10);
 
         const newRegister = new Register({
             firstname: req.body.firstname,
@@ -149,7 +152,6 @@ app.post('/', async (req, res) => {
         await newRegister.save();
         console.log('Registration successful:', req.body.firstname);
         
-        // Render index page with success message
         res.render('login.hbs', { message: 'Registration successful. Please login.' });
 
     } catch (error) {
@@ -157,8 +159,6 @@ app.post('/', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
-
 app.post('/login', async (req, res) => {
     try {
         const firstname = req.body.firstname;
@@ -185,25 +185,25 @@ app.post('/login', async (req, res) => {
 
 // Assuming you have middleware to check if the user is authenticated
 
-app.post('/update-image-link', isAuthenticated, async (req, res) => {
-    try {
-        const registrationNumber = req.body.registrationNumber;
-        const imageLink = req.body.imageLink;
+// app.post('/update-image-link', isAuthenticated, async (req, res) => {
+//     try {
+//         const registrationNumber = req.body.registrationNumber;
+//         const imageLink = req.body.imageLink;
 
-        // Check if the user's registration number matches the allowed registration number
-        if (registrationNumber === '12104729') {
-            // Store the updated image link in local storage or database
-            localStorage.setItem("imageLink", imageLink);
-            res.status(200).send('Image link updated successfully.');
-        } else {
-            // If the user's registration number does not match the allowed registration number, send a forbidden response
-            res.status(403).send('Unauthorized to update image link.');
-        }
-    } catch (error) {
-        console.error('Error updating image link:', error);
-        res.status(500).send(error.message);
-    }
-});
+//         // Check if the user's registration number matches the allowed registration number
+//         if (registrationNumber === '12104729') {
+//             // Store the updated image link in local storage or database
+//             localStorage.setItem("imageLink", imageLink);
+//             res.status(200).send('Image link updated successfully.');
+//         } else {
+//             // If the user's registration number does not match the allowed registration number, send a forbidden response
+//             res.status(403).send('Unauthorized to update image link.');
+//         }
+//     } catch (error) {
+//         console.error('Error updating image link:', error);
+//         res.status(500).send(error.message);
+//     }
+// });
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

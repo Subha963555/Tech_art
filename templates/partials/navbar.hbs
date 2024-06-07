@@ -79,10 +79,12 @@
         event.preventDefault(); // Prevent default form submission
 
         // Get the search query
+       
         const query = document.getElementById('searchInput').value.trim();
 
-        // Open a new window/tab with the search results
+     if(query!==""){
         window.open(`https://unsplash.com/s/photos/${query}`);
+     }
 
         return false; // Prevent form submission
     }
